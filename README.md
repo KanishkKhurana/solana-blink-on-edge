@@ -6,6 +6,8 @@ Using this repo, let's learn how solana blinks can exist as edge functions on Fl
 2. Install dependencies - `npm i`
 3. Build the Fleek Function - `npm run build`
 4. Create and Deploy the Fleek Function using the Fleek CLI
+   1. `fleek functions create --name blink`
+   2. `fleek functions deploy --name blink --path ./src/index.js`
 
 ## Fundamentals
 - Fleek functions enable serverless code execution and minimal devops overhead. These functions can be fetched from any data origin and Fleek can host them and ensure maximum performance and low latency. In our case we are using IPFS to store them, as at the time of writing this, the Fleek CLI supports it. JS runtime is a service on Fleek that enables javascript Fleek Functions.
