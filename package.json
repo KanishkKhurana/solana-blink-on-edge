@@ -1,0 +1,19 @@
+{
+  "name": "blink-edge",
+  "version": "1.0.0",
+  "description": "This package serves to help people make solana blinks on fleek",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js && echo 'const main = __webpack_exports__.main;' >> dist/bundle.js"
+  },
+  "author": "Kanishk Khurana",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@fleekxyz/cli": "^2.1.0-dev.1",
+    "@solana/web3.js": "^1.93.2"
+  }
+}
