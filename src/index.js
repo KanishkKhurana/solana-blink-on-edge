@@ -26,7 +26,7 @@ export const main = async (req) => {
           apiPath: "/",
         },
       ],
-      header: metaData,
+      headers: metaData,
     };
   }
 
