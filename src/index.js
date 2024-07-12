@@ -1,46 +1,22 @@
 import {
   Transaction,
-  SystemProgram,
-  LAMPORTS_PER_SOL,
-  ComputeBudgetProgram,
+  SystemProgram,    
   Connection,
   clusterApiUrl,
-  PublicKey,
-  TransactionInstruction,
+  PublicKey,  
 } from "@solana/web3.js";
 
-export const main = async (req) => {
-  console.log(req);
-  const { method, path } = req;
+export const main = async (req) => {  
+  const { method } = req;
 
-  const metaData = {
-    title: `Solana Blinks on Fleek`,
-    description: `Solana Blinks on Fleek`,    
-  };
+  const metaData = [
+    ["Content-Type", "application/json"],
+    ["Access-Control-Allow-Origin", "*"],
+    ["Access-Control-Allow-Methods", ["GET","POST","OPTIONS"]],
+    ["Access-Control-Allow-Headers", ["content-type","accept-encoding","authorization"]],
+  ];
 
-  if (path === "/actions.json") {
-    return {
-      rules: [
-        {
-          pathPattern: "/",
-          apiPath: "/",
-        },
-      ],
-      headers: metaData,
-    };
-  }
-
-  if (method == "GET") {
-    console.log("IN GET BLOCsK");
-    const resp = {};
-    resp.icon =
-      "https://t3.ftcdn.net/jpg/05/59/27/48/360_F_559274893_O9iSRQwTKIkAooNTglilMgx2yMcXK9Or.jpg";
-    resp.title = "Actions on Fleek";
-    resp.description = "Deploy your actions on fleek network";
-    resp.label = "Activate Action";
-
-    return { status: 200, body: JSON.stringify(resp), headers: [] };
-  } else if (method == "POST") {
+  if (method === "POST") {
     const account = new PublicKey(req.body.account);
 
     let transaction = new Transaction().add(
@@ -67,7 +43,17 @@ export const main = async (req) => {
       transaction: transactionBase64,
       message: "Send me one SOL",
     };
+    const body = JSON.stringify(resp);
+    return { body: body, headers:metaData };
+  } else {
+    console.log("IN GET BLOCsK");
+    const resp = {};
+    resp.icon =
+      "https://bafybeiding7lugfdazpzcmffwv4tr3xppypbrcw5ahn7llxnvn64gfy7ji.ipfs.w3s.link/";
+    resp.title = "Actions on Fleek";
+    resp.description = "Deploy your actions on fleek network";
+    resp.label = "Activate Action";
 
-    return { transaction: transactionBase64, message: "Send me one SOL" };
+    return { body: JSON.stringify(resp), headers:metaData  };
   }
 };
